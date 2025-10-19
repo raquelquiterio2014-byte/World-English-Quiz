@@ -1,0 +1,62 @@
+# Lista de perguntas e respostas em inglês
+questions = [
+    { 
+        "question": "What is the capital of France?",
+        "options": ["A) Berlin", "B) Madrid", "C) Paris", "D) Rome"],
+        "answer": "C"    },
+    { 
+        "question": "Which planet is known as the Red Planet?",
+        "options": ["A) Earth", "B) Mars", "C) Jupiter", "D) Venus"],
+        "answer": "B"    },
+    { 
+        "question": "Who painted the Mona Lisa?",
+        "options": ["A) Vincent van Gogh", "B) Pablo Picasso", "C) Leonardo da Vinci"],
+        "answer": "C"    },
+    { 
+        "question": "What is the fastest animal on Earth?",
+        "options": ["A) Hippo", "B) Lion", "C) Cheetah", "D) Snake"],
+        "answer": "C"    },
+    { 
+        "question": "Which is the longest river in the world?",
+        "options": ["A) The Amazon river", "B) The Nile river", "C) The Yangtze river", "D) The Mississippi river"],
+        "answer": "B"    },
+    { 
+        "question": "Which country is both the largest and the most populous?",
+        "options": ["A) United States", "B) China", "C) India", "D) Russia"],
+        "answer": "B"    },
+    { 
+        "question": "What ancient civilization built the pyramids of Giza?",
+        "options": ["A) Egyptians", "B) Greeks", "C) Romans", "D) Mayans"],
+        "answer": "A"    },
+    { 
+        "question": "What is the process called when a plant makes its own food?",
+        "options": ["A) Photosynthesis", "B) Respiration", "C) Transpiration", "D) Germination"],
+        "answer": "A"    },
+    { 
+        "question": "What is the highest mountain peak?",
+        "options": ["A) K2", "B) Kangchenjunga", "C) Lhotse", "D) Mount Everest"],
+        "answer": "D"    },
+    { 
+        "question": "What is the chemical symbol for gold?",
+        "options": ["A) Au", "B) Ag", "C) Pb", "D) Fe"],
+        "answer": "A"    },
+]
+
+# Inicializa a pontuação
+score = 0
+
+# Loop para iterar sobre cada pergunta
+for q in questions:
+    print(q["question"])
+    for option in q["options"]:
+        print(option)
+
+    user_answer = input("Enter your answer (A, B, C or D): ").strip()
+    if user_answer.upper() == q["answer"]:
+        print("Correct!\n")
+        score += 1
+    else:
+        print(f"Incorrect. The correct answer was {q['answer']}.\n")
+
+# Exibe a pontuação final
+print(f"Quiz finished! Your final score is: {score}/{len(questions)}")
