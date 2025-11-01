@@ -12,7 +12,7 @@ questions = [
     },
     {
         "question": "Who painted the Mona Lisa?",
-        "options": ["A) Vincent van Gogh", "B) Pablo Picasso", "C) Leonardo da Vinci", "D) "],
+        "options": ["A) Vincent van Gogh", "B) Pablo Picasso", "C) Leonardo da Vinci", "D) Michelangelo"],
         "answer": "C"
     },
     {
@@ -28,7 +28,7 @@ questions = [
     {
         "question": "Which country is both the largest and the most populous?",
         "options": ["A) United States", "B) China", "C) India", "D) Russia"],
-        "answer": "B"
+        "answer": "C"
     },
     {
         "question": "What ancient civilization built the pyramids of Giza?",
@@ -77,4 +77,5 @@ for q in questions:
         print(f"Incorrect. The correct answer was {q['answer']}.\n")
 
 # Exibe a pontuação final
+
 print(f"Quiz finished! Your final score is: {score}/{len(questions)}")
