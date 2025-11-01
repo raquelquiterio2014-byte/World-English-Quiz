@@ -23,7 +23,7 @@ questions = [
     { 
         "question": "Which country is both the largest and the most populous?",
         "options": ["A) United States", "B) China", "C) India", "D) Russia"],
-        "answer": "B"    },
+        "answer": "C"    },
     { 
         "question": "What ancient civilization built the pyramids of Giza?",
         "options": ["A) Egyptians", "B) Greeks", "C) Romans", "D) Mayans"],
@@ -59,4 +59,5 @@ for q in questions:
         print(f"Incorrect. The correct answer was {q['answer']}.\n")
 
 # Exibe a pontuação final
+
 print(f"Quiz finished! Your final score is: {score}/{len(questions)}")
