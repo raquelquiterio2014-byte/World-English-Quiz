@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World English Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f9; color: #222; min-height: 100vh; margin: 0; display: grid; place-items: center; }
+    main { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 12px #0002; width: min(90%, 520px); }
+    label { display: block; margin: 0.8rem 0; cursor: pointer; }
+    button { background: #075cb8; color: white; border: 0; border-radius: 6px; padding: 0.75rem 1rem; cursor: pointer; }
+    button:focus-visible, input:focus-visible { outline: 3px solid #ffb02e; outline-offset: 2px; }
+    #feedback { min-height: 1.5rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>World English Quiz</h1>
+    <p>General knowledge questions in English</p>
+    <section id="quiz">
+      <p id="progress"></p>
+      <h2 id="question"></h2>
+      <div id="options"></div>
+      <button id="next" type="button">Check answer</button>
+    </section>
+    <p id="feedback" role="status" aria-live="polite"></p>
+  </main>
+  <script>
+    const questions = [
+      {question: "What is the capital of France?", options: ["Berlin", "Madrid", "Paris", "Rome"], answer: "C"},
+      {question: "Which planet is known as the Red Planet?", options: ["Earth", "Mars", "Jupiter", "Venus"], answer: "B"},
+      {question: "Who painted the Mona Lisa?", options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"], answer: "C"},
+      {question: "Which animal is known for running at very high speeds on land?", options: ["Hippo", "Lion", "Cheetah", "Snake"], answer: "C"},
+      {question: "Which civilization built the pyramids of Giza?", options: ["Egyptians", "Greeks", "Romans", "Mayans"], answer: "A"},
+      {question: "What is the process by which plants make food using sunlight?", options: ["Photosynthesis", "Respiration", "Transpiration", "Germination"], answer: "A"},
+      {question: "What is Earth's highest mountain above sea level?", options: ["K2", "Kangchenjunga", "Lhotse", "Mount Everest"], answer: "D"},
+      {question: "What is the chemical symbol for gold?", options: ["Au", "Ag", "Pb", "Fe"], answer: "A"}
+    ];
+    let current = 0;
+    let score = 0;
+    const quiz = document.getElementById("quiz");
+    const feedback = document.getElementById("feedback");
+    const next = document.getElementById("next");
+
+    function showQuestion() {
+      const item = questions[current];
+      document.getElementById("progress").textContent = `Question ${current + 1} of ${questions.length}`;
+      document.getElementById("question").textContent = item.question;
+      const options = document.getElementById("options");
+      options.replaceChildren();
+      item.options.forEach((option, index) => {
+        const label = document.createElement("label");
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "answer";
+        input.value = "ABCD"[index];
+        label.append(input, ` ${"ABCD"[index]}) ${option}`);
+        options.append(label);
+      });
+      feedback.textContent = "";
+      next.textContent = "Check answer";
+      next.dataset.checked = "false";
+    }
+
+    next.addEventListener("click", () => {
+      if (next.dataset.checked === "true") {
+        current++;
+        if (current === questions.length) {
+          quiz.hidden = true;
+          feedback.textContent = `Quiz finished! Your final score is: ${score}/${questions.length}`;
+        } else showQuestion();
+        return;
+      }
+      const selected = document.querySelector('input[name="answer"]:checked');
+      if (!selected) { feedback.textContent = "Please select an answer."; return; }
+      const correct = questions[current].answer;
+      if (selected.value === correct) score++;
+      feedback.textContent = selected.value === correct ? "Correct!" : `Incorrect. The correct answer was ${correct}.`;
+      document.querySelectorAll('input[name="answer"]').forEach(input => input.disabled = true);
+      next.dataset.checked = "true";
+      next.textContent = current === questions.length - 1 ? "Show result" : "Next question";
+    });
+    showQuestion();
+  </script>
+</body>
+</html>
